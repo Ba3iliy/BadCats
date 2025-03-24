@@ -27,7 +27,7 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
-    сursor: url('images/cursor.png'), auto;
+    сursor: url('/images/cursor.png'), auto;
 }
 
 h1, h2, h3, h4, h5, h6 {
