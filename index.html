@@ -361,6 +361,7 @@
         </div>
     </footer>
 
+    <!-- Модальное окно -->
     <div class="booking-modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
@@ -378,61 +379,65 @@
                     <label for="date">Дата</label>
                     <input type="date" id="date" name="date" required>
                 </div>
+                <div class="form-group">
+                    <label for="time">Время</label>
+                    <input type="time" id="time" name="time" required>
+                </div>
                 <button type="submit" class="submit-booking">Забронировать</button>
             </form>
         </div>
     </div>
 
     <script>
-        // Получаем элементы
-        const modal = document.querySelector('.booking-modal');
-        const closeBtn = document.querySelector('.close-modal');
-        const bookingButtons = document.querySelectorAll('.cta-button');
-        const bookingForm = document.getElementById('booking-form');
+        document.addEventListener('DOMContentLoaded', function() {
+            // Получаем элементы
+            const modal = document.querySelector('.booking-modal');
+            const closeBtn = document.querySelector('.close-modal');
+            const bookingButtons = document.querySelectorAll('.cta-button');
+            const bookingForm = document.getElementById('booking-form');
 
-        // Открываем модальное окно при клике на кнопки бронирования
-        bookingButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                modal.style.display = 'block';
-                document.body.style.overflow = 'hidden'; // Запрещаем прокрутку страницы
+            // Открываем модальное окно при клике на кнопки бронирования
+            bookingButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    modal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                });
             });
-        });
 
-        // Закрываем модальное окно при клике на крестик
-        closeBtn.addEventListener('click', () => {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Разрешаем прокрутку страницы
-        });
-
-        // Закрываем модальное окно при клике вне его области
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) {
+            // Закрываем модальное окно при клике на крестик
+            closeBtn.addEventListener('click', () => {
                 modal.style.display = 'none';
                 document.body.style.overflow = 'auto';
-            }
-        });
+            });
 
-        // Обработка отправки формы
-        bookingForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Здесь будет код для отправки данных на сервер
-            const formData = {
-                name: document.getElementById('name').value,
-                phone: document.getElementById('phone').value,
-                date: document.getElementById('date').value
-            };
-            
-            // Пока просто выводим данные в консоль
-            console.log('Данные бронирования:', formData);
-            
-            // Очищаем форму и закрываем модальное окно
-            bookingForm.reset();
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-            
-            // Показываем уведомление
-            alert('Спасибо за бронирование! Мы свяжемся с вами в ближайшее время.');
+            // Закрываем модальное окно при клике вне его области
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Обработка отправки формы
+            bookingForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const formData = {
+                    name: document.getElementById('name').value,
+                    phone: document.getElementById('phone').value,
+                    date: document.getElementById('date').value,
+                    time: document.getElementById('time').value
+                };
+                
+                console.log('Данные бронирования:', formData);
+                
+                bookingForm.reset();
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                
+                alert('Спасибо за бронирование! Мы свяжемся с вами в ближайшее время.');
+            });
         });
     </script>
 </body>
