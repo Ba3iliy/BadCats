@@ -432,54 +432,55 @@
                 particle.className = 'particle';
                 
                 // Вычисляем параметры анимации
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 50 + Math.random() * 100;
+                const translateX = `${Math.cos(angle) * distance}vw`;
+                const translateY = `${Math.sin(angle) * distance}vh`;
                 const rotate = Math.random() * 360;
-                const translateX = `${-100 + Math.random() * 200}px`;
-                const translateY = `${-100 + Math.random() * 200}vh`;
-                const translateZ = `${Math.random() * 500}px`;
-                const hue = Math.random() * 360;
-                const duration = 12 + Math.random() * 8;
+                const duration = 5 + Math.random() * 5;
+                
+                // Выбираем один из неоновых цветов
+                const colors = [
+                    'hsl(280, 100%, 60%)', // Фиолетовый
+                    'hsl(200, 100%, 60%)', // Голубой
+                    'hsl(120, 100%, 60%)', // Зеленый
+                    'hsl(320, 100%, 60%)', // Розовый
+                    'hsl(40, 100%, 60%)'   // Золотой
+                ];
+                const color = colors[Math.floor(Math.random() * colors.length)];
                 
                 // Устанавливаем CSS переменные для анимации
                 particle.style.setProperty('--rotate', `${rotate}deg`);
                 particle.style.setProperty('--translateX', translateX);
                 particle.style.setProperty('--translateY', translateY);
-                particle.style.setProperty('--translateZ', translateZ);
                 particle.style.setProperty('--duration', `${duration}s`);
-                particle.style.color = `hsl(${hue}, 100%, 60%)`;
+                particle.style.color = color;
                 
                 backgroundAnimation.appendChild(particle);
                 
                 // Активируем частицу с небольшой задержкой
                 setTimeout(() => {
                     particle.classList.add('active');
-                }, index * 20);
+                    
+                    // Удаляем частицу после завершения анимации
+                    setTimeout(() => {
+                        particle.remove();
+                        createParticle(index); // Создаем новую частицу
+                    }, duration * 1000);
+                }, index * 50);
             }
             
             // Создаем начальные частицы
-            for(let i = 0; i < 300; i++) {
+            for(let i = 0; i < 50; i++) {
                 createParticle(i);
             }
             
-            // Периодически обновляем частицы
+            // Периодически добавляем новые частицы
             setInterval(() => {
-                const particles = document.querySelectorAll('.particle');
-                particles.forEach((particle, index) => {
-                    // Обновляем параметры анимации
-                    const rotate = Math.random() * 720 - 360;
-                    const translateX = `${-100 + Math.random() * 200}vw`;
-                    const translateY = `${-100 + Math.random() * 200}vh`;
-                    const translateZ = `${Math.random() * 1000}px`;
-                    const hue = Math.random() * 360;
-                    
-                    // Плавно применяем новые параметры
-                    particle.style.transition = 'all 3s cubic-bezier(0.4, 0, 0.2, 1)';
-                    particle.style.setProperty('--rotate', `${rotate}deg`);
-                    particle.style.setProperty('--translateX', translateX);
-                    particle.style.setProperty('--translateY', translateY);
-                    particle.style.setProperty('--translateZ', translateZ);
-                    particle.style.color = `hsl(${hue}, 100%, 60%)`;
-                });
-            }, 8000);
+                if(document.querySelectorAll('.particle').length < 50) {
+                    createParticle(Math.floor(Math.random() * 50));
+                }
+            }, 1000);
         });
     </script>
 </body>
