@@ -1264,6 +1264,7 @@ footer {
     width: 60px;
     height: 60px;
     opacity: 0.8;
+    animation: float 15s infinite ease-in-out;
 }
 
 .neon-figure img {
@@ -1272,73 +1273,100 @@ footer {
     object-fit: contain;
 }
 
-/* Индивидуальные стили для каждой фигуры */
-.neon-figure:nth-child(1) img {
-    filter: drop-shadow(0 0 15px var(--accent-blue));
-    animation: floatTwo 10s infinite ease-in-out, pulseTwo 3s infinite;
+/* Индивидуальные анимации для каждой фигуры */
+.neon-figure:nth-child(1) {
+    animation: float1 20s infinite ease-in-out, glow1 3s infinite alternate;
 }
 
-.neon-figure:nth-child(2) img {
-    filter: drop-shadow(0 0 15px var(--accent-green));
-    animation: floatThree 7s infinite ease-in-out, pulseThree 2.5s infinite;
+.neon-figure:nth-child(2) {
+    animation: float2 18s infinite ease-in-out, glow2 4s infinite alternate;
 }
 
-.neon-figure:nth-child(3) img {
-    filter: drop-shadow(0 0 15px #ff00ff);
-    animation: floatFour 9s infinite ease-in-out, pulseFour 3.5s infinite;
+.neon-figure:nth-child(3) {
+    animation: float3 25s infinite ease-in-out, glow3 2s infinite alternate;
 }
 
-.neon-figure:nth-child(4) img {
-    filter: drop-shadow(0 0 15px var(--accent-gold));
-    animation: floatFive 11s infinite ease-in-out, pulseFive 4s infinite;
+.neon-figure:nth-child(4) {
+    animation: float4 22s infinite ease-in-out, glow4 3.5s infinite alternate;
+}
+
+.neon-figure:nth-child(5) {
+    animation: float5 19s infinite ease-in-out, glow5 2.5s infinite alternate;
+}
+
+.neon-figure:nth-child(6) {
+    animation: float6 21s infinite ease-in-out, glow6 4s infinite alternate;
+}
+
+.neon-figure:nth-child(7) {
+    animation: float7 23s infinite ease-in-out, glow7 3s infinite alternate;
+}
+
+.neon-figure:nth-child(8) {
+    animation: float8 17s infinite ease-in-out, glow8 2.8s infinite alternate;
 }
 
 /* Анимации полета */
-@keyframes floatTwo {
-    0% { transform: translate(-100px, 0) scale(1); }
-    50% { transform: translate(50px, -100px) scale(1.2); }
-    100% { transform: translate(-100px, 0) scale(1); }
+@keyframes float1 {
+    0% { transform: translate(0, 0) rotate(0) scale(1); }
+    25% { transform: translate(50px, 30px) rotate(180deg) scale(1.2); }
+    50% { transform: translate(100px, -30px) rotate(360deg) scale(0.8); }
+    75% { transform: translate(50px, -60px) rotate(540deg) scale(1.1); }
+    100% { transform: translate(0, 0) rotate(720deg) scale(1); }
 }
 
-@keyframes floatThree {
-    0% { transform: translate(100px, 100px) rotate(-45deg); }
-    50% { transform: translate(-50px, -50px) rotate(45deg); }
-    100% { transform: translate(100px, 100px) rotate(-45deg); }
+@keyframes float2 {
+    0% { transform: translate(0, 0) rotate(0) scale(0.9); }
+    33% { transform: translate(-70px, 50px) rotate(-240deg) scale(1.3); }
+    66% { transform: translate(70px, -50px) rotate(-480deg) scale(0.7); }
+    100% { transform: translate(0, 0) rotate(-720deg) scale(0.9); }
 }
 
-@keyframes floatFour {
-    0% { transform: translate(-50px, -50px) scale(0.8); }
-    50% { transform: translate(100px, 50px) scale(1.1); }
-    100% { transform: translate(-50px, -50px) scale(0.8); }
+@keyframes float3 {
+    0% { transform: translate(0, 0) scale(1) rotate(0); }
+    50% { transform: translate(-50px, -80px) scale(1.4) rotate(360deg); }
+    100% { transform: translate(0, 0) scale(1) rotate(720deg); }
 }
 
-@keyframes floatFive {
-    0% { transform: translate(0, 0) rotate(0deg) scale(1); }
-    50% { transform: translate(-100px, 100px) rotate(180deg) scale(1.2); }
-    100% { transform: translate(0, 0) rotate(360deg) scale(1); }
+@keyframes float4 {
+    0% { transform: translate(0, 0) rotate(0) scale(0.8); }
+    25% { transform: translate(80px, 80px) rotate(180deg) scale(1.2); }
+    75% { transform: translate(-80px, -80px) rotate(540deg) scale(1); }
+    100% { transform: translate(0, 0) rotate(720deg) scale(0.8); }
 }
 
-/* Анимации пульсации */
-@keyframes pulseTwo {
-    0% { filter: drop-shadow(0 0 15px var(--accent-blue)); }
-    50% { filter: drop-shadow(0 0 25px var(--accent-blue)); }
-    100% { filter: drop-shadow(0 0 15px var(--accent-blue)); }
+/* Добавляем похожие анимации для float5-float8 */
+
+/* Анимации свечения */
+@keyframes glow1 {
+    0% { filter: drop-shadow(0 0 15px var(--accent-purple)) brightness(1); }
+    100% { filter: drop-shadow(0 0 30px var(--accent-purple)) brightness(1.5); }
 }
 
-@keyframes pulseThree {
-    0% { filter: drop-shadow(0 0 15px var(--accent-green)); }
-    50% { filter: drop-shadow(0 0 25px var(--accent-green)); }
-    100% { filter: drop-shadow(0 0 15px var(--accent-green)); }
+@keyframes glow2 {
+    0% { filter: drop-shadow(0 0 15px var(--accent-blue)) brightness(1); }
+    100% { filter: drop-shadow(0 0 30px var(--accent-blue)) brightness(1.5); }
 }
 
-@keyframes pulseFour {
-    0% { filter: drop-shadow(0 0 15px #ff00ff); }
-    50% { filter: drop-shadow(0 0 25px #ff00ff); }
-    100% { filter: drop-shadow(0 0 15px #ff00ff); }
+@keyframes glow3 {
+    0% { filter: drop-shadow(0 0 15px var(--accent-green)) brightness(1); }
+    100% { filter: drop-shadow(0 0 30px var(--accent-green)) brightness(1.5); }
 }
 
-@keyframes pulseFive {
-    0% { filter: drop-shadow(0 0 15px var(--accent-gold)); }
-    50% { filter: drop-shadow(0 0 25px var(--accent-gold)); }
-    100% { filter: drop-shadow(0 0 15px var(--accent-gold)); }
+@keyframes glow4 {
+    0% { filter: drop-shadow(0 0 15px #ff00ff) brightness(1); }
+    100% { filter: drop-shadow(0 0 30px #ff00ff) brightness(1.5); }
+}
+
+/* Добавляем похожие анимации для glow5-glow8 с разными цветами */
+
+/* Добавляем анимацию пульсации размера */
+.neon-figure img {
+    animation: pulse 3s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
 }
