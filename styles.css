@@ -1,14 +1,17 @@
 /* Основные переменные и сброс стилей */
 :root {
-    --primary-bg: #0a0a0a;
-    --secondary-bg: #121212;
+    --primary-bg: #000;
+    --secondary-bg: #111;
     --accent-purple: #9900ff;
     --accent-blue: #00ccff;
     --accent-green: #39ff14;
     --text-primary: #ffffff;
     --text-secondary: #b3b3b3;
     --card-bg: rgba(30, 30, 40, 0.7);
-    --neon-shadow: 0 0 10px rgba(153, 0, 255, 0.7), 0 0 20px rgba(153, 0, 255, 0.5);
+    --neon-shadow: 0 0 10px rgba(0, 255, 255, 0.8),
+                   0 0 20px rgba(0, 255, 255, 0.6),
+                   0 0 30px rgba(0, 255, 255, 0.4),
+                   0 0 40px rgba(0, 255, 255, 0.2);
 }
 
 * {
@@ -22,16 +25,19 @@ a, button, input, select, textarea {
     cursor: url('images/cursor.png') 16 16, pointer;
 }
 
-html {
-    scroll-behavior: smooth;
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--primary-bg);
 }
 
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: var(--primary-bg);
     color: var(--text-primary);
     line-height: 1.6;
-    overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -1192,4 +1198,14 @@ footer {
         opacity: 0.2;
         filter: drop-shadow(0 0 15px currentColor);
     }
+}
+
+#screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
 }
