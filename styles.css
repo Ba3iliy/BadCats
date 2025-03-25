@@ -1127,51 +1127,61 @@ footer {
 
 #purple {
     fill: none;
-    opacity: 0.15;
+    opacity: 0.3;
     stroke: var(--accent-purple);
     stroke-width: 12;
     stroke-miterlimit: 10;
     animation: show 4s infinite ease-in-out;
+    filter: drop-shadow(0 0 10px var(--accent-purple));
 }
 
 #cyan {
     fill: none;
-    opacity: 0.15;
+    opacity: 0.3;
     stroke: var(--accent-blue);
     stroke-width: 12;
     stroke-miterlimit: 10;
     animation: show 4s infinite ease-in-out;
+    filter: drop-shadow(0 0 10px var(--accent-blue));
 }
 
 #neon-green {
     fill: none;
-    opacity: 0.15;
+    opacity: 0.3;
     stroke: var(--accent-green);
     stroke-width: 6;
     stroke-miterlimit: 10;
     stroke-dasharray: 200;
     stroke-dashoffset: 800;
     animation: draw 4s infinite ease-in-out;
-    filter: drop-shadow(0 0 10px var(--accent-green));
+    filter: drop-shadow(0 0 15px var(--accent-green));
 }
 
 @keyframes draw {
-    to {
+    0% {
+        stroke-dashoffset: 800;
+        opacity: 0.1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
         stroke-dashoffset: 0;
+        opacity: 0.1;
     }
 }
 
 @keyframes show {
     0% {
-        opacity: 0.15;
+        opacity: 0.1;
         filter: drop-shadow(0 0 5px currentColor);
     }
     50% {
-        opacity: 0.3;
-        filter: drop-shadow(0 0 20px currentColor);
+        opacity: 0.5;
+        filter: drop-shadow(0 0 20px currentColor) drop-shadow(0 0 30px currentColor);
     }
     100% {
-        opacity: 0.15;
+        opacity: 0.1;
         filter: drop-shadow(0 0 5px currentColor);
     }
 }
