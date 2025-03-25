@@ -426,58 +426,62 @@
             // Код для анимированного фона
             const backgroundAnimation = document.querySelector('.background-animation');
             
-            // Функция создания неонового кота
-            function createNeonCat() {
-                const cat = document.createElement('div');
-                cat.className = 'neon-cat';
+            // Функция создания частицы
+            function createParticle(index) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
                 
-                // Случайный размер
-                const size = 40 + Math.random() * 120; // от 40px до 160px
-                cat.style.width = `${size}px`;
-                cat.style.height = `${size}px`;
+                // Вычисляем параметры анимации
+                const rotate = index * 20;
+                const translateX = `${100 - (index * (100/300))}px`;
+                const translateY = `${index * (100/300)}vh`;
+                const translateZ = `${(300 - index) * 0.5}px`;
+                const hue = 160 + (index * 2);
+                const duration = 8 + Math.random() * 4;
                 
-                // Случайная начальная позиция по горизонтали
-                const startX = Math.random() * window.innerWidth;
-                cat.style.left = `${startX}px`;
+                // Устанавливаем CSS переменные для анимации
+                particle.style.setProperty('--rotate', `${rotate}deg`);
+                particle.style.setProperty('--translateX', translateX);
+                particle.style.setProperty('--translateY', translateY);
+                particle.style.setProperty('--translateZ', translateZ);
+                particle.style.setProperty('--duration', `${duration}s`);
                 
-                // Случайная скорость
-                const duration = 10 + Math.random() * 20; // от 10 до 30 секунд
-                cat.style.setProperty('--duration', `${duration}s`);
+                // Устанавливаем цвет частицы
+                particle.style.color = `hsl(${hue}, 100%, 50%)`;
+                particle.style.backgroundColor = `currentColor`;
                 
-                // Выбор случайной анимации движения
-                const movements = ['float-right', 'float-left', 'zigzag'];
-                const randomMovement = movements[Math.floor(Math.random() * movements.length)];
-                cat.classList.add(randomMovement);
-                
-                // Выбор случайного эффекта свечения
-                const glowEffects = ['pulse', 'rainbow'];
-                const randomGlow = glowEffects[Math.floor(Math.random() * glowEffects.length)];
-                cat.classList.add(randomGlow);
-                
-                // Случайный поворот
-                const rotation = Math.random() * 360;
-                cat.style.transform = `rotate(${rotation}deg)`;
-                
-                // Случайное направление движения (зеркальное отражение)
-                if (Math.random() > 0.5) {
-                    cat.style.transform += ' scaleX(-1)';
-                }
-                
-                backgroundAnimation.appendChild(cat);
-                
-                // Удаляем кота после завершения анимации
+                // Добавляем задержку для каскадного эффекта
                 setTimeout(() => {
-                    cat.remove();
-                }, duration * 1000);
+                    particle.classList.add('active');
+                }, index * 8);
+                
+                backgroundAnimation.appendChild(particle);
             }
             
-            // Создаем новых котов с интервалом
-            setInterval(createNeonCat, 2000); // каждые 2 секунды
-            
-            // Создаем начальных котов
-            for(let i = 0; i < 8; i++) {
-                setTimeout(createNeonCat, i * 300);
+            // Создаем частицы
+            for(let i = 0; i < 300; i++) {
+                createParticle(i);
             }
+            
+            // Периодически обновляем частицы для поддержания эффекта
+            setInterval(() => {
+                const particles = document.querySelectorAll('.particle');
+                particles.forEach((particle, index) => {
+                    // Обновляем параметры анимации
+                    const rotate = Math.random() * 360;
+                    const translateX = `${-50 + Math.random() * 100}vw`;
+                    const translateY = `${-50 + Math.random() * 100}vh`;
+                    const translateZ = `${Math.random() * 500}px`;
+                    const hue = 160 + Math.random() * 200;
+                    
+                    // Применяем новые параметры
+                    particle.style.setProperty('--rotate', `${rotate}deg`);
+                    particle.style.setProperty('--translateX', translateX);
+                    particle.style.setProperty('--translateY', translateY);
+                    particle.style.setProperty('--translateZ', translateZ);
+                    particle.style.color = `hsl(${hue}, 100%, 50%)`;
+                });
+            }, 8000);
         });
     </script>
 </body>
