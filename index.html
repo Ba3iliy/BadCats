@@ -19,6 +19,7 @@
 </head>
 
 <body>
+    <div class="neon-lines"></div>
     <header>
         <nav>
             <div class="logo">
@@ -420,6 +421,53 @@
                 
                 alert('Спасибо за бронирование! Мы свяжемся с вами в ближайшее время.');
             });
+
+            // Код для анимации неоновых линий
+            const neonLinesContainer = document.querySelector('.neon-lines');
+            const neonColors = [
+                '#ff0090', // Розовый
+                '#ff00ff', // Фуксия
+                '#9900ff', // Фиолетовый
+                '#00ffff', // Голубой
+                '#ff3366'  // Малиновый
+            ];
+
+            function createNeonLine() {
+                const line = document.createElement('div');
+                line.className = 'neon-line';
+                
+                // Случайные параметры для разнообразия
+                const duration = 3 + Math.random() * 4; // 3-7 секунд
+                const delay = Math.random() * 2; // 0-2 секунды задержки
+                const color = neonColors[Math.floor(Math.random() * neonColors.length)];
+                const height = 50 + Math.random() * 150; // 50-200px высота
+                const startPosition = -50 + Math.random() * 100; // Случайная стартовая позиция
+                
+                // Применяем стили
+                line.style.height = `${height}px`;
+                line.style.left = `${startPosition}%`;
+                line.style.color = color;
+                line.style.animation = `lineMove ${duration}s linear ${delay}s`;
+                
+                neonLinesContainer.appendChild(line);
+                
+                // Удаляем линию после завершения анимации
+                setTimeout(() => {
+                    line.remove();
+                }, (duration + delay) * 1000);
+            }
+
+            // Создаем начальные линии
+            for(let i = 0; i < 20; i++) {
+                setTimeout(createNeonLine, i * 200);
+            }
+
+            // Периодически создаем новые линии
+            setInterval(() => {
+                if(document.querySelectorAll('.neon-line').length < 20) {
+                    createNeonLine();
+                }
+            }, 500);
         });
     </script>
 </body>
