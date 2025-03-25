@@ -985,48 +985,136 @@ footer {
     background: url('images/neon-cat.png') no-repeat center/contain;
     opacity: 0;
     pointer-events: none;
-    filter: drop-shadow(0 0 10px var(--accent-purple)) 
-            drop-shadow(0 0 20px var(--accent-blue));
-    animation: catFloat 20s linear infinite;
+    filter: drop-shadow(0 0 15px var(--accent-purple)) 
+            drop-shadow(0 0 30px var(--accent-blue))
+            drop-shadow(0 0 45px var(--accent-green));
+    mix-blend-mode: screen;
 }
 
-@keyframes catFloat {
+@keyframes catFloatRight {
+    0% {
+        transform: translateY(100vh) translateX(-100px) rotate(0deg) scale(1);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    45% {
+        transform: translateY(50vh) translateX(100px) rotate(180deg) scale(1.2);
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-100px) translateX(300px) rotate(360deg) scale(0.8);
+        opacity: 0;
+    }
+}
+
+@keyframes catFloatLeft {
+    0% {
+        transform: translateY(100vh) translateX(100vw) rotate(0deg) scale(0.8);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    45% {
+        transform: translateY(30vh) translateX(50vw) rotate(-180deg) scale(1.4);
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-100px) translateX(-100px) rotate(-360deg) scale(0.6);
+        opacity: 0;
+    }
+}
+
+@keyframes catZigZag {
     0% {
         transform: translateY(100vh) translateX(0) rotate(0deg) scale(1);
         opacity: 0;
     }
     10% {
-        opacity: 0.6;
+        opacity: 0.8;
     }
-    45% {
-        transform: translateY(50vh) translateX(100px) rotate(180deg) scale(1.2);
-        opacity: 0.6;
+    25% {
+        transform: translateY(75vh) translateX(100px) rotate(90deg) scale(1.1);
+    }
+    50% {
+        transform: translateY(50vh) translateX(-100px) rotate(180deg) scale(1.2);
+    }
+    75% {
+        transform: translateY(25vh) translateX(100px) rotate(270deg) scale(1.1);
     }
     90% {
-        opacity: 0.6;
+        opacity: 0.8;
     }
     100% {
-        transform: translateY(-100px) translateX(200px) rotate(360deg) scale(0.8);
+        transform: translateY(-100px) translateX(0) rotate(360deg) scale(1);
         opacity: 0;
     }
 }
 
-@keyframes neonPulse {
+@keyframes neonPulseStrong {
     0% {
-        filter: drop-shadow(0 0 10px var(--accent-purple)) 
-                drop-shadow(0 0 20px var(--accent-blue));
+        filter: drop-shadow(0 0 15px var(--accent-purple)) 
+                drop-shadow(0 0 30px var(--accent-blue))
+                drop-shadow(0 0 45px var(--accent-green));
+        transform: scale(1);
     }
     50% {
-        filter: drop-shadow(0 0 15px var(--accent-purple)) 
-                drop-shadow(0 0 30px var(--accent-blue)) 
-                drop-shadow(0 0 45px var(--accent-green));
+        filter: drop-shadow(0 0 25px var(--accent-purple)) 
+                drop-shadow(0 0 50px var(--accent-blue)) 
+                drop-shadow(0 0 75px var(--accent-green));
+        transform: scale(1.1);
     }
     100% {
-        filter: drop-shadow(0 0 10px var(--accent-purple)) 
-                drop-shadow(0 0 20px var(--accent-blue));
+        filter: drop-shadow(0 0 15px var(--accent-purple)) 
+                drop-shadow(0 0 30px var(--accent-blue))
+                drop-shadow(0 0 45px var(--accent-green));
+        transform: scale(1);
+    }
+}
+
+@keyframes neonRainbow {
+    0% {
+        filter: drop-shadow(0 0 20px var(--accent-purple)) 
+                drop-shadow(0 0 40px var(--accent-purple));
+    }
+    33% {
+        filter: drop-shadow(0 0 20px var(--accent-blue)) 
+                drop-shadow(0 0 40px var(--accent-blue));
+    }
+    66% {
+        filter: drop-shadow(0 0 20px var(--accent-green)) 
+                drop-shadow(0 0 40px var(--accent-green));
+    }
+    100% {
+        filter: drop-shadow(0 0 20px var(--accent-purple)) 
+                drop-shadow(0 0 40px var(--accent-purple));
     }
 }
 
 .neon-cat.pulse {
-    animation: catFloat 20s linear infinite, neonPulse 2s ease-in-out infinite;
+    animation: neonPulseStrong 2s ease-in-out infinite;
+}
+
+.neon-cat.rainbow {
+    animation: neonRainbow 3s linear infinite;
+}
+
+.neon-cat.float-right {
+    animation: catFloatRight var(--duration) linear 1;
+}
+
+.neon-cat.float-left {
+    animation: catFloatLeft var(--duration) linear 1;
+}
+
+.neon-cat.zigzag {
+    animation: catZigZag var(--duration) linear 1;
 }

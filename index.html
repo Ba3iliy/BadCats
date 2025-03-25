@@ -432,7 +432,7 @@
                 cat.className = 'neon-cat';
                 
                 // Случайный размер
-                const size = 50 + Math.random() * 100; // от 50px до 150px
+                const size = 40 + Math.random() * 120; // от 40px до 160px
                 cat.style.width = `${size}px`;
                 cat.style.height = `${size}px`;
                 
@@ -440,18 +440,27 @@
                 const startX = Math.random() * window.innerWidth;
                 cat.style.left = `${startX}px`;
                 
-                // Случайная скорость и направление движения
-                const duration = 15 + Math.random() * 25; // от 15 до 40 секунд
-                cat.style.animationDuration = `${duration}s`;
+                // Случайная скорость
+                const duration = 10 + Math.random() * 20; // от 10 до 30 секунд
+                cat.style.setProperty('--duration', `${duration}s`);
                 
-                // Случайный цвет свечения
-                const colors = ['var(--accent-purple)', 'var(--accent-blue)', 'var(--accent-green)'];
-                const randomColor = colors[Math.floor(Math.random() * colors.length)];
-                cat.style.filter = `drop-shadow(0 0 10px ${randomColor}) drop-shadow(0 0 20px ${randomColor})`;
+                // Выбор случайной анимации движения
+                const movements = ['float-right', 'float-left', 'zigzag'];
+                const randomMovement = movements[Math.floor(Math.random() * movements.length)];
+                cat.classList.add(randomMovement);
                 
-                // Добавляем пульсацию с вероятностью 50%
+                // Выбор случайного эффекта свечения
+                const glowEffects = ['pulse', 'rainbow'];
+                const randomGlow = glowEffects[Math.floor(Math.random() * glowEffects.length)];
+                cat.classList.add(randomGlow);
+                
+                // Случайный поворот
+                const rotation = Math.random() * 360;
+                cat.style.transform = `rotate(${rotation}deg)`;
+                
+                // Случайное направление движения (зеркальное отражение)
                 if (Math.random() > 0.5) {
-                    cat.classList.add('pulse');
+                    cat.style.transform += ' scaleX(-1)';
                 }
                 
                 backgroundAnimation.appendChild(cat);
@@ -463,11 +472,11 @@
             }
             
             // Создаем новых котов с интервалом
-            setInterval(createNeonCat, 3000);
+            setInterval(createNeonCat, 2000); // каждые 2 секунды
             
             // Создаем начальных котов
-            for(let i = 0; i < 5; i++) {
-                setTimeout(createNeonCat, i * 500);
+            for(let i = 0; i < 8; i++) {
+                setTimeout(createNeonCat, i * 300);
             }
         });
     </script>
