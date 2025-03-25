@@ -7,6 +7,8 @@
     <title>Bad Cats - Киберспортивный ПК-клуб</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax.js/1.5.0/parallax.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -19,7 +21,11 @@
 </head>
 
 <body>
-    <canvas id="screen"></canvas>
+    <div class="container">
+        <div id="one" class="balls layer" data-depth="0.0"></div>
+        <div id="two" class="balls layer" data-depth="0.6"></div>
+        <div id="three" class="balls layer" data-depth="1.2"></div>
+    </div>
     <header>
         <nav>
             <div class="logo">
@@ -642,6 +648,78 @@
                 c.height = window.innerHeight-1;
             });
         })();
+
+        var ballCount = 25; // Уменьшенное количество шаров для более плавной анимации
+
+        $(function() {
+            init('#one', 80, 25);  // Увеличенное время между кадрами и размер шаров
+            init('#two', 60, 20);
+            init('#three', 40, 15);
+            $('.container').parallax();
+        });
+
+        function init(ele, time, ballSize) {
+            initBalls(ele, ballSize);
+            balls = window.setInterval(function() {
+                moveBalls(ele)
+            }, time);
+        }
+
+        function initBalls(ele, ballSize) {
+            var container = $(ele);
+            for (i = 0; i < ballCount; i++) {
+                var newBall = $('<span class="fly">').appendTo(container);
+                newBall.css({
+                    'position': 'absolute',
+                    'width': ballSize + 'px',
+                    'height': ballSize + 'px',
+                    'top': rand(0, container.height() - ballSize),
+                    'left': rand(0, container.width() - ballSize)
+                }).attr({
+                    'data-dX': rand(-5, 5),  // Уменьшенная скорость движения
+                    'data-dY': rand(-5, 5)
+                });
+            }
+        }
+
+        function moveBalls(ele) {
+            var container = $(ele);
+            var maxX = container.width(),
+                maxY = container.height();
+            $('.fly', container).each(function(i, b) {
+                var ball = $(b),
+                    pos = ball.position(),
+                    x = pos.left,
+                    y = pos.top,
+                    dX = parseFloat(ball.attr('data-dX')),
+                    dY = parseFloat(ball.attr('data-dY')),
+                    ballSize = ball.height();
+
+                // Плавное изменение направления
+                if (x + dX + ballSize > maxX || x + dX < 0) {
+                    dX = -dX * 0.8; // Замедление при отскоке
+                    ball.attr('data-dX', dX);
+                }
+                if (y + dY + ballSize > maxY || y + dY < 0) {
+                    dY = -dY * 0.8; // Замедление при отскоке
+                    ball.attr('data-dY', dY);
+                }
+
+                // Плавное движение с использованием CSS transition
+                ball.css({
+                    'top': y + dY,
+                    'left': x + dX
+                });
+            });
+        }
+
+        function rand(min, max, isInt) {
+            var min = min || 0,
+                max = max || 1,
+                isInt = isInt || false,
+                num = Math.random() * (max - min) + min;
+            return (isInt) ? Math.round(num) : num;
+        }
     </script>
 </body>
 
