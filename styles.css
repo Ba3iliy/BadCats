@@ -1113,12 +1113,19 @@ footer {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     pointer-events: none;
     z-index: 0;
     overflow: hidden;
     background: rgba(0, 0, 0, 0.95);
+}
+
+.neon-lines svg {
+    width: 100%;
+    height: 100%;
+    transform: scale(1.5);
+    transform-origin: center center;
 }
 
 #home {
@@ -1127,61 +1134,67 @@ footer {
 
 #purple {
     fill: none;
-    opacity: 0.3;
+    opacity: 0.5;
     stroke: var(--accent-purple);
-    stroke-width: 12;
+    stroke-width: 6;
     stroke-miterlimit: 10;
     animation: show 4s infinite ease-in-out;
-    filter: drop-shadow(0 0 10px var(--accent-purple));
+    filter: drop-shadow(0 0 20px var(--accent-purple));
 }
 
 #cyan {
     fill: none;
-    opacity: 0.3;
+    opacity: 0.5;
     stroke: var(--accent-blue);
-    stroke-width: 12;
+    stroke-width: 6;
     stroke-miterlimit: 10;
-    animation: show 4s infinite ease-in-out;
-    filter: drop-shadow(0 0 10px var(--accent-blue));
+    animation: show 4s infinite ease-in-out 1s;
+    filter: drop-shadow(0 0 20px var(--accent-blue));
 }
 
 #neon-green {
     fill: none;
-    opacity: 0.3;
+    opacity: 0.5;
     stroke: var(--accent-green);
-    stroke-width: 6;
+    stroke-width: 3;
     stroke-miterlimit: 10;
-    stroke-dasharray: 200;
-    stroke-dashoffset: 800;
-    animation: draw 4s infinite ease-in-out;
-    filter: drop-shadow(0 0 15px var(--accent-green));
+    stroke-dasharray: 400;
+    stroke-dashoffset: 1200;
+    animation: draw 4s infinite ease-in-out 2s;
+    filter: drop-shadow(0 0 25px var(--accent-green));
 }
 
 @keyframes draw {
     0% {
-        stroke-dashoffset: 800;
-        opacity: 0.1;
+        stroke-dashoffset: 1200;
+        opacity: 0.2;
+        filter: drop-shadow(0 0 15px currentColor);
     }
     50% {
-        opacity: 0.5;
+        opacity: 0.8;
+        filter: drop-shadow(0 0 30px currentColor) drop-shadow(0 0 50px currentColor);
     }
     100% {
         stroke-dashoffset: 0;
-        opacity: 0.1;
+        opacity: 0.2;
+        filter: drop-shadow(0 0 15px currentColor);
     }
 }
 
 @keyframes show {
     0% {
-        opacity: 0.1;
-        filter: drop-shadow(0 0 5px currentColor);
+        opacity: 0.2;
+        filter: drop-shadow(0 0 15px currentColor);
+        transform: scale(1);
     }
     50% {
-        opacity: 0.5;
-        filter: drop-shadow(0 0 20px currentColor) drop-shadow(0 0 30px currentColor);
+        opacity: 0.8;
+        filter: drop-shadow(0 0 30px currentColor) drop-shadow(0 0 50px currentColor);
+        transform: scale(1.02);
     }
     100% {
-        opacity: 0.1;
-        filter: drop-shadow(0 0 5px currentColor);
+        opacity: 0.2;
+        filter: drop-shadow(0 0 15px currentColor);
+        transform: scale(1);
     }
 }
