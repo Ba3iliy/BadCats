@@ -19,8 +19,6 @@
 </head>
 
 <body>
-    <div class="background-animation"></div>
-
     <header>
         <nav>
             <div class="logo">
@@ -422,44 +420,6 @@
                 
                 alert('Спасибо за бронирование! Мы свяжемся с вами в ближайшее время.');
             });
-
-            // Код для анимированного фона
-            const backgroundAnimation = document.querySelector('.background-animation');
-            
-            function createParticle() {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                
-                const x = Math.random() * window.innerWidth;
-                const y = Math.random() * window.innerHeight;
-                particle.style.left = `${x}px`;
-                particle.style.top = `${y}px`;
-                
-                const destinationX = (Math.random() - 0.5) * 200;
-                const destinationY = -Math.random() * 200;
-                particle.style.setProperty('--translateX', `${destinationX}px`);
-                particle.style.setProperty('--translateY', `${destinationY}px`);
-                
-                const duration = 5 + Math.random() * 5;
-                particle.style.setProperty('--duration', `${duration}s`);
-                
-                const hue = Math.random() * 360;
-                particle.style.color = `hsl(${hue}, 100%, 70%)`;
-                
-                backgroundAnimation.appendChild(particle);
-                
-                setTimeout(() => {
-                    particle.remove();
-                    createParticle();
-                }, duration * 1000);
-            }
-            
-            // Создаем начальные частицы
-            for(let i = 0; i < 100; i++) {
-                setTimeout(() => {
-                    createParticle();
-                }, i * 200);
-            }
         });
     </script>
 </body>
