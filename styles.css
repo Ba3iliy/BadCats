@@ -15,7 +15,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: url('images/cursor.png') 16 16, auto;
 }
 
 /* Добавляем исключение для элементов, где кастомный курсор не нужен */
