@@ -980,52 +980,53 @@ footer {
     overflow: hidden;
 }
 
-.paw-particle {
+.neon-cat {
     position: absolute;
-    width: 20px;
-    height: 20px;
-    background: linear-gradient(45deg, var(--accent-purple), var(--accent-blue));
-    opacity: 0.3;
-    border-radius: 50%;
+    background: url('images/neon-cat.png') no-repeat center/contain;
+    opacity: 0;
     pointer-events: none;
-    animation: floatParticle 15s linear infinite;
-    filter: blur(2px);
+    filter: drop-shadow(0 0 10px var(--accent-purple)) 
+            drop-shadow(0 0 20px var(--accent-blue));
+    animation: catFloat 20s linear infinite;
 }
 
-.paw-particle::before {
-    content: '🐾';
-    position: absolute;
-    font-size: 20px;
-    color: transparent;
-    text-shadow: 0 0 5px var(--accent-purple);
-    animation: glowPulse 2s ease-in-out infinite;
-}
-
-@keyframes floatParticle {
+@keyframes catFloat {
     0% {
-        transform: translateY(100vh) translateX(0) rotate(0deg);
+        transform: translateY(100vh) translateX(0) rotate(0deg) scale(1);
         opacity: 0;
     }
     10% {
-        opacity: 0.3;
+        opacity: 0.6;
+    }
+    45% {
+        transform: translateY(50vh) translateX(100px) rotate(180deg) scale(1.2);
+        opacity: 0.6;
     }
     90% {
-        opacity: 0.3;
+        opacity: 0.6;
     }
     100% {
-        transform: translateY(-100px) translateX(100px) rotate(360deg);
+        transform: translateY(-100px) translateX(200px) rotate(360deg) scale(0.8);
         opacity: 0;
     }
 }
 
-@keyframes glowPulse {
+@keyframes neonPulse {
     0% {
-        text-shadow: 0 0 5px var(--accent-purple);
+        filter: drop-shadow(0 0 10px var(--accent-purple)) 
+                drop-shadow(0 0 20px var(--accent-blue));
     }
     50% {
-        text-shadow: 0 0 15px var(--accent-blue);
+        filter: drop-shadow(0 0 15px var(--accent-purple)) 
+                drop-shadow(0 0 30px var(--accent-blue)) 
+                drop-shadow(0 0 45px var(--accent-green));
     }
     100% {
-        text-shadow: 0 0 5px var(--accent-purple);
+        filter: drop-shadow(0 0 10px var(--accent-purple)) 
+                drop-shadow(0 0 20px var(--accent-blue));
     }
+}
+
+.neon-cat.pulse {
+    animation: catFloat 20s linear infinite, neonPulse 2s ease-in-out infinite;
 }

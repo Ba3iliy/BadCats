@@ -426,35 +426,48 @@
             // Код для анимированного фона
             const backgroundAnimation = document.querySelector('.background-animation');
             
-            // Функция создания частицы
-            function createParticle() {
-                const particle = document.createElement('div');
-                particle.className = 'paw-particle';
+            // Функция создания неонового кота
+            function createNeonCat() {
+                const cat = document.createElement('div');
+                cat.className = 'neon-cat';
+                
+                // Случайный размер
+                const size = 50 + Math.random() * 100; // от 50px до 150px
+                cat.style.width = `${size}px`;
+                cat.style.height = `${size}px`;
                 
                 // Случайная начальная позиция по горизонтали
                 const startX = Math.random() * window.innerWidth;
-                particle.style.left = startX + 'px';
+                cat.style.left = `${startX}px`;
                 
                 // Случайная скорость и направление движения
-                const duration = 10 + Math.random() * 20;
-                const angle = -30 + Math.random() * 60; // Угол движения от -30 до 30 градусов
-                particle.style.animation = `floatParticle ${duration}s linear infinite`;
-                particle.style.transform = `rotate(${angle}deg)`;
+                const duration = 15 + Math.random() * 25; // от 15 до 40 секунд
+                cat.style.animationDuration = `${duration}s`;
                 
-                backgroundAnimation.appendChild(particle);
+                // Случайный цвет свечения
+                const colors = ['var(--accent-purple)', 'var(--accent-blue)', 'var(--accent-green)'];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                cat.style.filter = `drop-shadow(0 0 10px ${randomColor}) drop-shadow(0 0 20px ${randomColor})`;
                 
-                // Удаляем частицу после завершения анимации
+                // Добавляем пульсацию с вероятностью 50%
+                if (Math.random() > 0.5) {
+                    cat.classList.add('pulse');
+                }
+                
+                backgroundAnimation.appendChild(cat);
+                
+                // Удаляем кота после завершения анимации
                 setTimeout(() => {
-                    particle.remove();
+                    cat.remove();
                 }, duration * 1000);
             }
             
-            // Создаем новые частицы с интервалом
-            setInterval(createParticle, 2000);
+            // Создаем новых котов с интервалом
+            setInterval(createNeonCat, 3000);
             
-            // Создаем начальные частицы
-            for(let i = 0; i < 10; i++) {
-                setTimeout(createParticle, i * 200);
+            // Создаем начальных котов
+            for(let i = 0; i < 5; i++) {
+                setTimeout(createNeonCat, i * 500);
             }
         });
     </script>
