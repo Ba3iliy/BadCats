@@ -432,12 +432,12 @@
                 particle.className = 'particle';
                 
                 // Вычисляем параметры анимации
-                const rotate = index * 20;
-                const translateX = `${100 - (index * (100/300))}px`;
-                const translateY = `${index * (100/300)}vh`;
-                const translateZ = `${(300 - index) * 0.5}px`;
-                const hue = 160 + (index * 2);
-                const duration = 8 + Math.random() * 4;
+                const rotate = index * 15;
+                const translateX = `${150 - (index * (150/300))}px`;
+                const translateY = `${index * (150/300)}vh`;
+                const translateZ = `${(300 - index) * 1}px`;
+                const hue = Math.random() * 360;
+                const duration = 12 + Math.random() * 8;
                 
                 // Устанавливаем CSS переменные для анимации
                 particle.style.setProperty('--rotate', `${rotate}deg`);
@@ -446,20 +446,19 @@
                 particle.style.setProperty('--translateZ', translateZ);
                 particle.style.setProperty('--duration', `${duration}s`);
                 
-                // Устанавливаем цвет частицы
-                particle.style.color = `hsl(${hue}, 100%, 50%)`;
-                particle.style.backgroundColor = `currentColor`;
+                // Устанавливаем цвет частицы с повышенной яркостью
+                particle.style.color = `hsl(${hue}, 100%, 60%)`;
                 
                 // Добавляем задержку для каскадного эффекта
                 setTimeout(() => {
                     particle.classList.add('active');
-                }, index * 8);
+                }, index * 20);
                 
                 backgroundAnimation.appendChild(particle);
             }
             
             // Создаем частицы
-            for(let i = 0; i < 300; i++) {
+            for(let i = 0; i < 200; i++) {
                 createParticle(i);
             }
             
@@ -468,20 +467,21 @@
                 const particles = document.querySelectorAll('.particle');
                 particles.forEach((particle, index) => {
                     // Обновляем параметры анимации
-                    const rotate = Math.random() * 360;
-                    const translateX = `${-50 + Math.random() * 100}vw`;
-                    const translateY = `${-50 + Math.random() * 100}vh`;
-                    const translateZ = `${Math.random() * 500}px`;
-                    const hue = 160 + Math.random() * 200;
+                    const rotate = Math.random() * 720 - 360;
+                    const translateX = `${-100 + Math.random() * 200}vw`;
+                    const translateY = `${-100 + Math.random() * 200}vh`;
+                    const translateZ = `${Math.random() * 1000}px`;
+                    const hue = Math.random() * 360;
                     
-                    // Применяем новые параметры
+                    // Плавно применяем новые параметры
+                    particle.style.transition = 'all 3s cubic-bezier(0.4, 0, 0.2, 1)';
                     particle.style.setProperty('--rotate', `${rotate}deg`);
                     particle.style.setProperty('--translateX', translateX);
                     particle.style.setProperty('--translateY', translateY);
                     particle.style.setProperty('--translateZ', translateZ);
-                    particle.style.color = `hsl(${hue}, 100%, 50%)`;
+                    particle.style.color = `hsl(${hue}, 100%, 60%)`;
                 });
-            }, 8000);
+            }, 12000);
         });
     </script>
 </body>
