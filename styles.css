@@ -1119,13 +1119,35 @@ footer {
     z-index: 0;
     overflow: hidden;
     background: rgba(0, 0, 0, 0.95);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    will-change: transform;
 }
 
 .neon-lines svg {
-    width: 100%;
-    height: 100%;
-    transform: scale(1.5);
+    position: absolute;
+    width: 150vw;
+    height: 150vh;
+    left: -25vw;
+    top: -25vh;
     transform-origin: center center;
+    animation: svgFloat 20s infinite ease-in-out;
+    will-change: transform;
+}
+
+@keyframes svgFloat {
+    0%, 100% {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+    25% {
+        transform: translate3d(5vw, -5vh, 50px) scale(1.05);
+    }
+    50% {
+        transform: translate3d(-5vw, 5vh, -50px) scale(1.1);
+    }
+    75% {
+        transform: translate3d(5vw, 5vh, 50px) scale(1.05);
+    }
 }
 
 #home {
@@ -1134,40 +1156,43 @@ footer {
 
 #purple {
     fill: none;
-    opacity: 0.5;
+    opacity: 0.6;
     stroke: var(--accent-purple);
-    stroke-width: 6;
+    stroke-width: 4;
     stroke-miterlimit: 10;
-    animation: show 4s infinite ease-in-out;
+    animation: show 6s infinite ease-in-out;
     filter: drop-shadow(0 0 20px var(--accent-purple));
+    will-change: opacity, filter, transform;
 }
 
 #cyan {
     fill: none;
-    opacity: 0.5;
+    opacity: 0.6;
     stroke: var(--accent-blue);
-    stroke-width: 6;
+    stroke-width: 4;
     stroke-miterlimit: 10;
-    animation: show 4s infinite ease-in-out 1s;
+    animation: show 6s infinite ease-in-out 2s;
     filter: drop-shadow(0 0 20px var(--accent-blue));
+    will-change: opacity, filter, transform;
 }
 
 #neon-green {
     fill: none;
-    opacity: 0.5;
+    opacity: 0.6;
     stroke: var(--accent-green);
-    stroke-width: 3;
+    stroke-width: 2;
     stroke-miterlimit: 10;
-    stroke-dasharray: 400;
-    stroke-dashoffset: 1200;
-    animation: draw 4s infinite ease-in-out 2s;
+    stroke-dasharray: 500;
+    stroke-dashoffset: 1500;
+    animation: draw 6s infinite ease-in-out 4s;
     filter: drop-shadow(0 0 25px var(--accent-green));
+    will-change: opacity, filter, stroke-dashoffset;
 }
 
 @keyframes draw {
     0% {
-        stroke-dashoffset: 1200;
-        opacity: 0.2;
+        stroke-dashoffset: 1500;
+        opacity: 0.3;
         filter: drop-shadow(0 0 15px currentColor);
     }
     50% {
@@ -1176,25 +1201,52 @@ footer {
     }
     100% {
         stroke-dashoffset: 0;
-        opacity: 0.2;
+        opacity: 0.3;
         filter: drop-shadow(0 0 15px currentColor);
     }
 }
 
 @keyframes show {
     0% {
-        opacity: 0.2;
+        opacity: 0.3;
         filter: drop-shadow(0 0 15px currentColor);
-        transform: scale(1);
+        transform: scale(0.98) translate3d(0, 0, 0);
     }
     50% {
         opacity: 0.8;
         filter: drop-shadow(0 0 30px currentColor) drop-shadow(0 0 50px currentColor);
-        transform: scale(1.02);
+        transform: scale(1.02) translate3d(10px, -10px, 50px);
     }
     100% {
-        opacity: 0.2;
+        opacity: 0.3;
         filter: drop-shadow(0 0 15px currentColor);
-        transform: scale(1);
+        transform: scale(0.98) translate3d(0, 0, 0);
+    }
+}
+
+/* Оптимизация для мобильных устройств */
+@media (max-width: 768px) {
+    .neon-lines svg {
+        width: 200vw;
+        height: 200vh;
+        left: -50vw;
+        top: -50vh;
+    }
+
+    #purple, #cyan {
+        stroke-width: 3;
+    }
+
+    #neon-green {
+        stroke-width: 1.5;
+    }
+
+    @keyframes svgFloat {
+        0%, 100% {
+            transform: translate3d(0, 0, 0) scale(1);
+        }
+        50% {
+            transform: translate3d(-10vw, 0, 0) scale(1.05);
+        }
     }
 }
