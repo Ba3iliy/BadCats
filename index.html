@@ -343,48 +343,32 @@
         </div>
     </section>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">
-                <img src="images/logo.jpg" alt="Bad Cats Logo">
-                <p>© 2025 Bad Cats. Все права защищены.</p>
+    <div style="display: none;">
+        <!-- Модальное окно -->
+        <div class="booking-modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2>Забронировать место</h2>
+                <form id="booking-form">
+                    <div class="form-group">
+                        <label for="name">Имя</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Телефон</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Дата</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Время</label>
+                        <input type="time" id="time" name="time" required>
+                    </div>
+                    <button type="submit" class="submit-booking">Забронировать</button>
+                </form>
             </div>
-            <div class="footer-links">
-                <a href="#hero">Главная</a>
-                <a href="#about">О нас</a>
-                <a href="#gaming-zones">Игровые зоны</a>
-                <a href="#pricing">Цены</a>
-                <a href="#events">Мероприятия</a>
-                <a href="#reviews">Отзывы</a>
-                <a href="#contacts">Контакты</a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Модальное окно -->
-    <div class="booking-modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Забронировать место</h2>
-            <form id="booking-form">
-                <div class="form-group">
-                    <label for="name">Имя</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Телефон</label>
-                    <input type="tel" id="phone" name="phone" required>
-                </div>
-                <div class="form-group">
-                    <label for="date">Дата</label>
-                    <input type="date" id="date" name="date" required>
-                </div>
-                <div class="form-group">
-                    <label for="time">Время</label>
-                    <input type="time" id="time" name="time" required>
-                </div>
-                <button type="submit" class="submit-booking">Забронировать</button>
-            </form>
         </div>
     </div>
 
