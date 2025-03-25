@@ -1124,7 +1124,7 @@ footer {
 .neon-lines svg {
     width: 100%;
     height: 100%;
-    transform: scale(1.5);
+    transform: scale(1.2);
     transform-origin: center center;
 }
 
@@ -1134,43 +1134,44 @@ footer {
 
 #purple {
     fill: none;
-    opacity: 0.4;
+    opacity: 0.5;
     stroke: var(--accent-purple);
-    stroke-width: 6;
+    stroke-width: 3;
     stroke-miterlimit: 10;
     animation: show 4s infinite ease-in-out;
-    filter: drop-shadow(0 0 15px var(--accent-purple));
+    filter: drop-shadow(0 0 20px var(--accent-purple));
 }
 
 #cyan {
     fill: none;
-    opacity: 0.4;
+    opacity: 0.5;
     stroke: var(--accent-blue);
-    stroke-width: 6;
+    stroke-width: 3;
     stroke-miterlimit: 10;
-    animation: show 4s infinite ease-in-out;
-    filter: drop-shadow(0 0 15px var(--accent-blue));
+    animation: show 4s infinite ease-in-out 1s;
+    filter: drop-shadow(0 0 20px var(--accent-blue));
 }
 
 #neon-green {
     fill: none;
-    opacity: 0.4;
+    opacity: 0.5;
     stroke: var(--accent-green);
-    stroke-width: 3;
+    stroke-width: 2;
     stroke-miterlimit: 10;
-    stroke-dasharray: 400;
-    stroke-dashoffset: 1200;
-    animation: draw 4s infinite ease-in-out;
-    filter: drop-shadow(0 0 20px var(--accent-green));
+    stroke-dasharray: 500;
+    stroke-dashoffset: 1500;
+    animation: draw 4s infinite ease-in-out 2s;
+    filter: drop-shadow(0 0 25px var(--accent-green));
 }
 
 @keyframes draw {
     0% {
-        stroke-dashoffset: 1200;
+        stroke-dashoffset: 1500;
         opacity: 0.2;
     }
     50% {
-        opacity: 0.6;
+        opacity: 0.7;
+        filter: drop-shadow(0 0 30px currentColor);
     }
     100% {
         stroke-dashoffset: 0;
@@ -1181,14 +1182,14 @@ footer {
 @keyframes show {
     0% {
         opacity: 0.2;
-        filter: drop-shadow(0 0 10px currentColor);
+        filter: drop-shadow(0 0 15px currentColor);
     }
     50% {
-        opacity: 0.6;
-        filter: drop-shadow(0 0 25px currentColor) drop-shadow(0 0 35px currentColor);
+        opacity: 0.7;
+        filter: drop-shadow(0 0 30px currentColor) drop-shadow(0 0 45px currentColor);
     }
     100% {
         opacity: 0.2;
-        filter: drop-shadow(0 0 10px currentColor);
+        filter: drop-shadow(0 0 15px currentColor);
     }
 }
