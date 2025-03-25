@@ -19,6 +19,8 @@
 </head>
 
 <body>
+    <div class="background-animation"></div>
+
     <header>
         <nav>
             <div class="logo">
@@ -422,6 +424,40 @@
                 
                 alert('Спасибо за бронирование! Мы свяжемся с вами в ближайшее время.');
             });
+
+            // Код для анимированного фона
+            const backgroundAnimation = document.querySelector('.background-animation');
+            
+            // Функция создания частицы
+            function createParticle() {
+                const particle = document.createElement('div');
+                particle.className = 'paw-particle';
+                
+                // Случайная начальная позиция по горизонтали
+                const startX = Math.random() * window.innerWidth;
+                particle.style.left = startX + 'px';
+                
+                // Случайная скорость и направление движения
+                const duration = 10 + Math.random() * 20;
+                const angle = -30 + Math.random() * 60; // Угол движения от -30 до 30 градусов
+                particle.style.animation = `floatParticle ${duration}s linear infinite`;
+                particle.style.transform = `rotate(${angle}deg)`;
+                
+                backgroundAnimation.appendChild(particle);
+                
+                // Удаляем частицу после завершения анимации
+                setTimeout(() => {
+                    particle.remove();
+                }, duration * 1000);
+            }
+            
+            // Создаем новые частицы с интервалом
+            setInterval(createParticle, 2000);
+            
+            // Создаем начальные частицы
+            for(let i = 0; i < 10; i++) {
+                setTimeout(createParticle, i * 200);
+            }
         });
     </script>
 </body>
