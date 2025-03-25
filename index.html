@@ -424,50 +424,42 @@
 
             // Код для анимации неоновых линий
             const neonLinesContainer = document.querySelector('.neon-lines');
-            const neonColors = [
-                '#ff0090', // Розовый
-                '#ff00ff', // Фуксия
-                '#9900ff', // Фиолетовый
-                '#00ffff', // Голубой
-                '#ff3366'  // Малиновый
-            ];
 
             function createNeonLine() {
                 const line = document.createElement('div');
                 line.className = 'neon-line';
                 
-                // Случайные параметры для разнообразия
-                const duration = 3 + Math.random() * 4; // 3-7 секунд
-                const delay = Math.random() * 2; // 0-2 секунды задержки
-                const color = neonColors[Math.floor(Math.random() * neonColors.length)];
-                const height = 50 + Math.random() * 150; // 50-200px высота
-                const startPosition = -50 + Math.random() * 100; // Случайная стартовая позиция
+                // Случайные параметры
+                const duration = 8 + Math.random() * 4; // 8-12 секунд
+                const startX = Math.random() * window.innerWidth;
+                const height = 80 + Math.random() * 120; // 80-200px высота
                 
                 // Применяем стили
                 line.style.height = `${height}px`;
-                line.style.left = `${startPosition}%`;
-                line.style.color = color;
-                line.style.animation = `lineMove ${duration}s linear ${delay}s`;
+                line.style.left = `${startX}px`;
+                line.style.animation = `lineMove ${duration}s linear`;
                 
                 neonLinesContainer.appendChild(line);
                 
                 // Удаляем линию после завершения анимации
                 setTimeout(() => {
                     line.remove();
-                }, (duration + delay) * 1000);
+                }, duration * 1000);
             }
 
             // Создаем начальные линии
-            for(let i = 0; i < 20; i++) {
-                setTimeout(createNeonLine, i * 200);
+            for(let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    createNeonLine();
+                }, i * 1000);
             }
 
             // Периодически создаем новые линии
             setInterval(() => {
-                if(document.querySelectorAll('.neon-line').length < 20) {
+                if(document.querySelectorAll('.neon-line').length < 8) {
                     createNeonLine();
                 }
-            }, 500);
+            }, 2000);
         });
     </script>
 </body>
