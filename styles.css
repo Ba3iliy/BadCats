@@ -15,11 +15,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    cursor: url('images/d.cur'), auto;
 }
 
 /* Добавляем исключение для элементов, где кастомный курсор не нужен */
-a, button, input, select, textarea {
-    cursor: url('images/cursor.png') 16 16, pointer;
+a, button, input, select, textarea, 
+.cta-button, .social-link, .slider-dot, 
+.close-modal, .burger-menu, .submit-booking, 
+.nav-links a {
+    cursor: url('images/d.cur'), pointer;
 }
 
 html, body {
@@ -1396,4 +1400,9 @@ footer {
 
 .neon-figure:nth-child(8) img {
     animation: glow2 3.8s infinite alternate, spin2 14s infinite linear;
+}
+
+/* Удаляем старые стили курсора */
+style[type="text/css"] {
+    display: none;
 }
