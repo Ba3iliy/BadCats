@@ -15,15 +15,23 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: url('images/d.cur'), auto;
+    cursor: url('images/d.cur'), auto !important;
 }
 
-/* Добавляем исключение для элементов, где кастомный курсор не нужен */
-a, button, input, select, textarea, 
-.cta-button, .social-link, .slider-dot, 
-.close-modal, .burger-menu, .submit-booking, 
+/* Обновляем курсор для всех интерактивных элементов */
+a, 
+button, 
+input, 
+select, 
+textarea, 
+.cta-button, 
+.social-link, 
+.slider-dot, 
+.close-modal, 
+.burger-menu, 
+.submit-booking, 
 .nav-links a {
-    cursor: url('images/d.cur'), pointer;
+    cursor: url('images/d.cur'), pointer !important;
 }
 
 html, body {
