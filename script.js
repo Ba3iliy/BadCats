@@ -152,37 +152,6 @@ function closeBookingModal() {
     }, 300);
 }
 
-// Функция для управления слайдером отзывов
-function handleReviewSlider() {
-    let currentSlide = 0;
-    
-    function showSlide(index) {
-        reviews.forEach((review, i) => {
-            review.style.transform = `translateX(${(i - index) * 100}%)`;
-        });
-        
-        sliderDots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === index);
-        });
-    }
-    
-    sliderDots.forEach((dot, i) => {
-        dot.addEventListener('click', () => {
-            currentSlide = i;
-            showSlide(currentSlide);
-        });
-    });
-    
-    // Автоматическое переключение слайдов
-    setInterval(() => {
-        currentSlide = (currentSlide + 1) % reviews.length;
-        showSlide(currentSlide);
-    }, 5000);
-    
-    // Инициализация слайдера
-    showSlide(currentSlide);
-}
-
 // Функция для создания эффекта курсора-кота
 function handleCatCursor() {
     document.addEventListener('mousemove', (e) => {
@@ -465,7 +434,7 @@ function initReviewSlider() {
     slider.addEventListener('mouseleave', startAutoSlide);
 }
 
-// Инициализация всех функций при загрузке страницы
+// Обновляем инициализацию в конце файла
 window.addEventListener('DOMContentLoaded', () => {
     // Устанавливаем начальные стили для секций (для анимации появления)
     document.querySelectorAll('section').forEach(section => {
@@ -480,7 +449,6 @@ window.addEventListener('DOMContentLoaded', () => {
     handleNavigation();
     handleMobileMenu();
     handleBookingModal();
-    handleReviewSlider();
     handleCatCursor();
     createNeonParticles();
     smoothScroll();
@@ -490,6 +458,6 @@ window.addEventListener('DOMContentLoaded', () => {
         showNotification('Добро пожаловать в Bad Cats! Готовы к игре?');
     }, 1500);
     
-    // Запускаем после загрузки страницы
+    // Инициализируем слайдер отзывов
     initReviewSlider();
 });
