@@ -261,8 +261,8 @@ nav {
     background: 
         linear-gradient(90deg, var(--accent-purple) 1px, transparent 1px),
         linear-gradient(0deg, var(--accent-blue) 1px, transparent 1px);
-    background-size: 50px 50px;
-    opacity: 0.1;
+    background-size: 100px 100px;
+    opacity: 0.2;
     z-index: 1;
     animation: gridPulse 3s infinite alternate;
 }
@@ -270,12 +270,12 @@ nav {
 /* Добавляем анимацию пульсации для сетки */
 @keyframes gridPulse {
     0% {
-        opacity: 0.05;
-        background-size: 50px 50px;
+        opacity: 0.15;
+        background-size: 100px 100px;
     }
     100% {
-        opacity: 0.15;
-        background-size: 52px 52px;
+        opacity: 0.25;
+        background-size: 102px 102px;
     }
 }
 
