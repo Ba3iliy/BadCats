@@ -262,21 +262,10 @@ nav {
         linear-gradient(90deg, var(--accent-purple) 1px, transparent 1px),
         linear-gradient(0deg, var(--accent-blue) 1px, transparent 1px);
     background-size: 100px 100px;
-    opacity: 0.2;
+    opacity: 0.3;
     z-index: 1;
-    animation: gridPulse 3s infinite alternate;
-}
-
-/* Добавляем анимацию пульсации для сетки */
-@keyframes gridPulse {
-    0% {
-        opacity: 0.15;
-        background-size: 100px 100px;
-    }
-    100% {
-        opacity: 0.25;
-        background-size: 102px 102px;
-    }
+    filter: drop-shadow(0 0 2px var(--accent-purple)) 
+            drop-shadow(0 0 4px var(--accent-blue));
 }
 
 /* Обновляем z-index для контента, чтобы он был поверх сетки */
