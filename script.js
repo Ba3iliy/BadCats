@@ -388,14 +388,12 @@ function initReviewSlider() {
             review.classList.remove('active', 'prev');
             if (i === index) {
                 review.classList.add('active');
-                review.style.transform = 'translateX(0)';
-                review.style.opacity = '1';
+                review.style.animation = 'slideIn 0.5s forwards';
             } else if (i === (index - 1 + reviews.length) % reviews.length) {
                 review.classList.add('prev');
-                review.style.transform = 'translateX(-100%)';
-                review.style.opacity = '0';
+                review.style.animation = 'slideOut 0.5s forwards';
             } else {
-                review.style.transform = 'translateX(100%)';
+                review.style.animation = '';
                 review.style.opacity = '0';
             }
         });

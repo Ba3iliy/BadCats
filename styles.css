@@ -916,21 +916,26 @@ nav {
 }
 
 .review-slider {
-    display: flex;
-    overflow: hidden;
-    margin-bottom: 30px;
     position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
 }
 
 .review {
-    flex: 0 0 100%;
-    min-width: 100%;
-    opacity: 0;
-    transform: translateX(100%);
-    transition: all 0.5s ease;
     position: absolute;
-    top: 0;
-    left: 0;
+    width: 100%;
+    padding: 30px;
+    opacity: 0;
+    transition: all 0.5s ease;
+    background: rgba(10, 10, 15, 0.6);
+    border: 2px solid var(--accent-purple);
+    border-radius: 10px;
+    box-shadow: 
+        0 0 10px var(--accent-purple),
+        inset 0 0 20px rgba(153, 0, 255, 0.2);
+    backdrop-filter: blur(5px);
 }
 
 .review.active {
@@ -939,45 +944,36 @@ nav {
     position: relative;
 }
 
-.review.prev {
-    transform: translateX(-100%);
-}
-
 .review-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
     margin-bottom: 20px;
-    font-style: italic;
-    position: relative;
-}
-
-.review-text::before {
-    content: '"';
-    position: absolute;
-    top: -20px;
-    left: -10px;
-    font-size: 3rem;
-    color: var(--accent-purple);
-    opacity: 0.3;
+    color: var(--text-primary);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
 
 .reviewer {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid rgba(153, 0, 255, 0.3);
 }
 
 .reviewer-name {
-    font-weight: bold;
     color: var(--accent-blue);
+    font-weight: 500;
 }
 
 .rating {
-    color: var(--accent-green);
+    color: var(--accent-purple);
+    letter-spacing: 2px;
 }
 
 .slider-controls {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 10px;
     margin-top: 20px;
 }
 
@@ -985,35 +981,31 @@ nav {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: rgba(153, 0, 255, 0.3);
+    background: rgba(153, 0, 255, 0.2);
+    border: 2px solid transparent;
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 2px solid transparent;
-}
-
-.slider-dot:hover {
-    background-color: rgba(153, 0, 255, 0.5);
-    box-shadow: 0 0 10px var(--accent-purple);
 }
 
 .slider-dot.active {
-    background-color: var(--accent-purple);
+    background: var(--accent-purple);
+    box-shadow: 0 0 10px var(--accent-purple);
     border-color: var(--accent-blue);
-    box-shadow: 0 0 15px var(--accent-purple);
 }
 
-/* Добавляем кнопки навигации */
 .slider-nav {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    border: 1px solid var(--accent-purple);
+    background: rgba(10, 10, 15, 0.6);
+    border: none;
     color: var(--text-primary);
+    font-size: 24px;
     padding: 10px 15px;
     cursor: pointer;
     z-index: 2;
     transition: all 0.3s ease;
+    border-radius: 5px;
 }
 
 .slider-nav:hover {
@@ -1022,11 +1014,33 @@ nav {
 }
 
 .slider-prev {
-    left: 10px;
+    left: -50px;
 }
 
 .slider-next {
-    right: 10px;
+    right: -50px;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
 }
 
 /* Contacts Section */
