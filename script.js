@@ -374,7 +374,7 @@ function smoothScroll() {
     });
 }
 
-// Функционал слайдера отзывов
+// Обновляем функцию initReviewSlider
 function initReviewSlider() {
     const slider = document.querySelector('.review-slider');
     const reviews = document.querySelectorAll('.review');
@@ -384,21 +384,25 @@ function initReviewSlider() {
 
     // Функция показа слайда
     function showSlide(index) {
-        reviews.forEach(review => {
+        reviews.forEach((review, i) => {
             review.classList.remove('active', 'prev');
-            review.style.transform = 'translateX(100%)';
+            if (i === index) {
+                review.classList.add('active');
+                review.style.transform = 'translateX(0)';
+                review.style.opacity = '1';
+            } else if (i === (index - 1 + reviews.length) % reviews.length) {
+                review.classList.add('prev');
+                review.style.transform = 'translateX(-100%)';
+                review.style.opacity = '0';
+            } else {
+                review.style.transform = 'translateX(100%)';
+                review.style.opacity = '0';
+            }
         });
 
-        dots.forEach(dot => dot.classList.remove('active'));
-
-        reviews[index].classList.add('active');
-        dots[index].classList.add('active');
-
-        if (index === 0) {
-            reviews[reviews.length - 1].classList.add('prev');
-        } else {
-            reviews[index - 1].classList.add('prev');
-        }
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
     }
 
     // Следующий слайд
