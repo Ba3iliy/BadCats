@@ -919,17 +919,28 @@ nav {
     display: flex;
     overflow: hidden;
     margin-bottom: 30px;
+    position: relative;
 }
 
 .review {
     flex: 0 0 100%;
     min-width: 100%;
-    background-color: var(--card-bg);
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(153, 0, 255, 0.2);
-    border: 1px solid rgba(153, 0, 255, 0.1);
-    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.5s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.review.active {
+    opacity: 1;
+    transform: translateX(0);
+    position: relative;
+}
+
+.review.prev {
+    transform: translateX(-100%);
 }
 
 .review-text {
@@ -966,7 +977,8 @@ nav {
 .slider-controls {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
+    margin-top: 20px;
 }
 
 .slider-dot {
@@ -976,11 +988,45 @@ nav {
     background-color: rgba(153, 0, 255, 0.3);
     cursor: pointer;
     transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.slider-dot:hover {
+    background-color: rgba(153, 0, 255, 0.5);
+    box-shadow: 0 0 10px var(--accent-purple);
 }
 
 .slider-dot.active {
     background-color: var(--accent-purple);
-    box-shadow: 0 0 10px rgba(153, 0, 255, 0.7);
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 15px var(--accent-purple);
+}
+
+/* Добавляем кнопки навигации */
+.slider-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--accent-purple);
+    color: var(--text-primary);
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.slider-nav:hover {
+    background: rgba(153, 0, 255, 0.3);
+    box-shadow: 0 0 15px var(--accent-purple);
+}
+
+.slider-prev {
+    left: 10px;
+}
+
+.slider-next {
+    right: 10px;
 }
 
 /* Contacts Section */

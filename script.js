@@ -374,6 +374,95 @@ function smoothScroll() {
     });
 }
 
+// Функционал слайдера отзывов
+function initReviewSlider() {
+    const slider = document.querySelector('.review-slider');
+    const reviews = document.querySelectorAll('.review');
+    const dots = document.querySelectorAll('.slider-dot');
+    let currentSlide = 0;
+    let interval;
+
+    // Функция показа слайда
+    function showSlide(index) {
+        reviews.forEach(review => {
+            review.classList.remove('active', 'prev');
+            review.style.transform = 'translateX(100%)';
+        });
+
+        dots.forEach(dot => dot.classList.remove('active'));
+
+        reviews[index].classList.add('active');
+        dots[index].classList.add('active');
+
+        if (index === 0) {
+            reviews[reviews.length - 1].classList.add('prev');
+        } else {
+            reviews[index - 1].classList.add('prev');
+        }
+    }
+
+    // Следующий слайд
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % reviews.length;
+        showSlide(currentSlide);
+    }
+
+    // Предыдущий слайд
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + reviews.length) % reviews.length;
+        showSlide(currentSlide);
+    }
+
+    // Автоматическое переключение
+    function startAutoSlide() {
+        interval = setInterval(nextSlide, 5000); // Каждые 5 секунд
+    }
+
+    function stopAutoSlide() {
+        clearInterval(interval);
+    }
+
+    // Добавляем кнопки навигации
+    const prevButton = document.createElement('button');
+    prevButton.className = 'slider-nav slider-prev';
+    prevButton.innerHTML = '❮';
+    prevButton.onclick = () => {
+        stopAutoSlide();
+        prevSlide();
+        startAutoSlide();
+    };
+
+    const nextButton = document.createElement('button');
+    nextButton.className = 'slider-nav slider-next';
+    nextButton.innerHTML = '❯';
+    nextButton.onclick = () => {
+        stopAutoSlide();
+        nextSlide();
+        startAutoSlide();
+    };
+
+    slider.appendChild(prevButton);
+    slider.appendChild(nextButton);
+
+    // Обработчики для точек
+    dots.forEach((dot, index) => {
+        dot.onclick = () => {
+            stopAutoSlide();
+            currentSlide = index;
+            showSlide(currentSlide);
+            startAutoSlide();
+        };
+    });
+
+    // Запускаем слайдер
+    showSlide(currentSlide);
+    startAutoSlide();
+
+    // Останавливаем автопереключение при наведении
+    slider.addEventListener('mouseenter', stopAutoSlide);
+    slider.addEventListener('mouseleave', startAutoSlide);
+}
+
 // Инициализация всех функций при загрузке страницы
 window.addEventListener('DOMContentLoaded', () => {
     // Устанавливаем начальные стили для секций (для анимации появления)
@@ -398,4 +487,7 @@ window.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         showNotification('Добро пожаловать в Bad Cats! Готовы к игре?');
     }, 1500);
+    
+    // Запускаем после загрузки страницы
+    initReviewSlider();
 });
