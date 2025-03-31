@@ -921,6 +921,7 @@ nav {
     max-width: 800px;
     margin: 0 auto;
     overflow: hidden;
+    min-height: 200px;
 }
 
 .review {
@@ -928,6 +929,7 @@ nav {
     width: 100%;
     padding: 30px;
     opacity: 0;
+    transform: translateX(100%);
     transition: all 0.5s ease;
     background: rgba(10, 10, 15, 0.6);
     border: 2px solid var(--accent-purple);
@@ -942,6 +944,11 @@ nav {
     opacity: 1;
     transform: translateX(0);
     position: relative;
+}
+
+.review.prev {
+    transform: translateX(-100%);
+    opacity: 0;
 }
 
 .review-text {
