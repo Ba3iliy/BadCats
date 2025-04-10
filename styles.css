@@ -925,56 +925,39 @@ nav {
 }
 
 .review {
-    position: absolute;
-    width: 100%;
-    padding: 30px;
+    display: none;
     opacity: 0;
-    transform: translateX(100%);
-    transition: all 0.5s ease;
-    background: rgba(10, 10, 15, 0.6);
-    border: 2px solid var(--accent-purple);
-    border-radius: 10px;
-    box-shadow: 
-        0 0 10px var(--accent-purple),
-        inset 0 0 20px rgba(153, 0, 255, 0.2);
-    backdrop-filter: blur(5px);
+    transition: opacity 0.5s ease-in-out;
+    text-align: center;
+    padding: 20px;
 }
 
 .review.active {
+    display: block;
     opacity: 1;
-    transform: translateX(0);
-    position: relative;
-}
-
-.review.prev {
-    transform: translateX(-100%);
-    opacity: 0;
 }
 
 .review-text {
-    font-size: 1.1rem;
+    font-size: 1.1em;
     line-height: 1.6;
     margin-bottom: 20px;
     color: var(--text-primary);
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
 
 .reviewer {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding-top: 15px;
-    border-top: 1px solid rgba(153, 0, 255, 0.3);
+    gap: 15px;
 }
 
 .reviewer-name {
-    color: var(--accent-blue);
-    font-weight: 500;
+    color: var(--accent-purple);
+    font-weight: bold;
 }
 
 .rating {
-    color: var(--accent-purple);
-    letter-spacing: 2px;
+    color: var(--accent-gold);
 }
 
 .slider-controls {
@@ -988,16 +971,19 @@ nav {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: rgba(153, 0, 255, 0.2);
-    border: 2px solid transparent;
+    background: rgba(153, 0, 255, 0.3);
     cursor: pointer;
     transition: all 0.3s ease;
+}
+
+.slider-dot:hover {
+    background: rgba(153, 0, 255, 0.5);
+    transform: scale(1.2);
 }
 
 .slider-dot.active {
     background: var(--accent-purple);
     box-shadow: 0 0 10px var(--accent-purple);
-    border-color: var(--accent-blue);
 }
 
 .slider-nav {
