@@ -922,68 +922,110 @@ nav {
     margin: 0 auto;
     overflow: hidden;
     min-height: 200px;
+    padding: 30px;
+    background: rgba(10, 10, 15, 0.6);
+    border: 2px solid var(--accent-purple);
+    border-radius: 15px;
+    box-shadow: 
+        0 0 20px rgba(153, 0, 255, 0.3),
+        inset 0 0 30px rgba(153, 0, 255, 0.1);
+    backdrop-filter: blur(5px);
 }
 
 .review {
-    display: none;
+    position: absolute;
+    width: 100%;
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-    text-align: center;
+    transform: translateX(100%);
+    transition: all 0.5s ease;
     padding: 20px;
 }
 
 .review.active {
-    display: block;
     opacity: 1;
+    transform: translateX(0);
+}
+
+.review.prev {
+    transform: translateX(-100%);
+    opacity: 0;
 }
 
 .review-text {
-    font-size: 1.1em;
+    font-size: 1.2em;
     line-height: 1.6;
     margin-bottom: 20px;
     color: var(--text-primary);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    position: relative;
+    padding: 0 20px;
+}
+
+.review-text::before,
+.review-text::after {
+    content: '"';
+    position: absolute;
+    font-size: 2em;
+    color: var(--accent-purple);
+    text-shadow: 0 0 10px var(--accent-purple);
+}
+
+.review-text::before {
+    left: -10px;
+    top: -10px;
+}
+
+.review-text::after {
+    right: -10px;
+    bottom: -30px;
 }
 
 .reviewer {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(153, 0, 255, 0.3);
 }
 
 .reviewer-name {
-    color: var(--accent-purple);
-    font-weight: bold;
+    color: var(--accent-blue);
+    font-weight: 500;
+    text-shadow: 0 0 10px var(--accent-blue);
 }
 
 .rating {
     color: var(--accent-gold);
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px var(--accent-gold);
 }
 
 .slider-controls {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 .slider-dot {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: rgba(153, 0, 255, 0.3);
+    background: rgba(153, 0, 255, 0.2);
+    border: 2px solid transparent;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .slider-dot:hover {
-    background: rgba(153, 0, 255, 0.5);
+    background: rgba(153, 0, 255, 0.4);
     transform: scale(1.2);
 }
 
 .slider-dot.active {
     background: var(--accent-purple);
     box-shadow: 0 0 10px var(--accent-purple);
+    border-color: var(--accent-blue);
 }
 
 .slider-nav {

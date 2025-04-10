@@ -448,17 +448,42 @@
         let currentSlide = 0;
         let slideInterval;
 
-        function showSlide(index) {
-            reviews.forEach(review => review.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
+        function showSlide(index, direction = 'next') {
+            const currentReview = document.querySelector('.review.active');
+            const nextReview = reviews[index];
             
-            reviews[index].classList.add('active');
-            dots[index].classList.add('active');
+            // Удаляем все дополнительные классы
+            reviews.forEach(review => {
+                review.classList.remove('active', 'prev');
+                review.style.transform = direction === 'next' ? 'translateX(100%)' : 'translateX(-100%)';
+            });
+            
+            // Добавляем класс prev текущему слайду
+            if (currentReview) {
+                currentReview.classList.add(direction === 'next' ? 'prev' : '');
+                currentReview.style.transform = direction === 'next' ? 'translateX(-100%)' : 'translateX(100%)';
+            }
+            
+            // Активируем новый слайд
+            nextReview.classList.add('active');
+            nextReview.style.transform = 'translateX(0)';
+            
+            // Обновляем точки навигации
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
         }
 
         function nextSlide() {
+            const direction = 'next';
             currentSlide = (currentSlide + 1) % reviews.length;
-            showSlide(currentSlide);
+            showSlide(currentSlide, direction);
+        }
+
+        function prevSlide() {
+            const direction = 'prev';
+            currentSlide = (currentSlide - 1 + reviews.length) % reviews.length;
+            showSlide(currentSlide, direction);
         }
 
         function startSlideShow() {
@@ -472,8 +497,9 @@
         // Обработчики для точек навигации
         dots.forEach((dot, index) => {
             dot.addEventListener('click', () => {
+                const direction = index > currentSlide ? 'next' : 'prev';
                 currentSlide = index;
-                showSlide(currentSlide);
+                showSlide(currentSlide, direction);
                 stopSlideShow();
                 startSlideShow();
             });
@@ -483,7 +509,8 @@
         document.querySelector('.review-slider').addEventListener('mouseenter', stopSlideShow);
         document.querySelector('.review-slider').addEventListener('mouseleave', startSlideShow);
 
-        // Запускаем слайдшоу
+        // Инициализация первого слайда и запуск слайдшоу
+        showSlide(0);
         startSlideShow();
     </script>
 </body>
