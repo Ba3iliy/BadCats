@@ -934,11 +934,11 @@ nav {
 
 .review {
     position: absolute;
-    width: 100%;
+    width: calc(100% - 80px);
     opacity: 0;
     transform: translateX(100%);
     transition: all 0.5s ease;
-    padding: 30px;
+    padding: 20px;
 }
 
 .review.active {
@@ -962,18 +962,15 @@ nav {
     text-align: center;
 }
 
-.review-text::before,
-.review-text::after {
-    display: none;
-}
-
 .reviewer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 20px;
+    padding: 20px;
     margin-top: 20px;
     border-top: 2px solid rgba(153, 0, 255, 0.3);
+    background: rgba(10, 10, 15, 0.4);
+    border-radius: 10px;
 }
 
 .reviewer-name {
@@ -984,22 +981,22 @@ nav {
 }
 
 .rating {
-    font-size: 1.3em;
+    font-size: 1.2em;
     color: var(--accent-gold);
-    letter-spacing: 3px;
+    letter-spacing: 5px;
     text-shadow: 0 0 10px var(--accent-gold);
 }
 
 .slider-controls {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
     margin-top: 30px;
 }
 
 .slider-dot {
-    width: 12px;
-    height: 12px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
     background: rgba(153, 0, 255, 0.2);
     border: 2px solid transparent;
